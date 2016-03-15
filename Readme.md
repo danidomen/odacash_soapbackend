@@ -1,0 +1,2 @@
+# Módulo de conexión con el ERP OdaCash by KleverSoft, WebImpacto & Levantia
+Este módulo solo debe ser usado e implementado por Levantia. Al tener muchas configuraciones que son propias de cada tienda (como los IDs del lenguaje) rogamos encarecidamente no probar directamente con un entorno de producción
