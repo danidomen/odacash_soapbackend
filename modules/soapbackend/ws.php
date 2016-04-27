@@ -1,4 +1,4 @@
-<?
+<?php
 include 'PearWI/wiIncludeBase.php';
 //include 'PearWI/wiIncludeMDB2.php';
 include 'PearWI/wiIncludeSoapServer.php';

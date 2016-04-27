@@ -1,4 +1,4 @@
-<?
+<?php
 include_once $pearpath . '/Net/Socket.php';
 include_once $pearpath . '/Net/URL.php';
 include_once $pearpath . '/HTTP/Request.php';

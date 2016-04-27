@@ -1,4 +1,4 @@
-<?
+<?php
 include_once $pearpath . '/MDB2/MDB2.php';
 include_once $pearpath . '/MDB2/MDB2/LOB.php';
 include_once $pearpath . '/MDB2/MDB2/Driver/Datatype/Common.php';
