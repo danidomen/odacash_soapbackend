@@ -132,8 +132,14 @@ class ScriptSuppliers
 
     public function ResetDefaultCombinations()
     {
-        $rows = Db::getInstance()->executeS('SELECT id_product, pa.id_product_attribute FROM  `' . _DB_PREFIX_ . 'product_attribute` pa INNER JOIN `' . _DB_PREFIX_ . 'product_attribute_shop` pas ON pas.id_shop = 1 '
-                . 'AND pas.id_product_attribute = pa.id_product_attribute  GROUP BY id_product HAVING SUM( pas.default_on ) = 0');
+        $shops = Shop::getShops();
+        if(count($shops)<=1){
+            $rows = Db::getInstance()->executeS('SELECT id_product, pa.id_product_attribute FROM  `' . _DB_PREFIX_ . 'product_attribute` pa '
+                    . ' GROUP BY id_product HAVING (SUM( pa.default_on ) = 0 OR SUM( pa.default_on ) IS NULL)');
+        }else{
+            $rows = Db::getInstance()->executeS('SELECT id_product, pa.id_product_attribute FROM  `' . _DB_PREFIX_ . 'product_attribute` pa INNER JOIN `' . _DB_PREFIX_ . 'product_attribute_shop` pas ON pas.id_shop = 1 '
+                    . 'AND pas.id_product_attribute = pa.id_product_attribute  GROUP BY id_product HAVING SUM( pas.default_on ) = 0');
+        }
         if ($rows)
             foreach ($rows as $row) {
                 Db::getInstance()->execute('UPDATE `ps_product_attribute` SET default_on = 1 WHERE id_product_attribute = ' . $row['id_product_attribute']);
@@ -171,4 +177,3 @@ class ScriptSuppliers
 
 $Script = new ScriptSuppliers();
 $Script->RemakeProductThings();
-?>

@@ -901,6 +901,13 @@ where
         //Daniel Martin - Seteo del Stock correctamente en la 1.5
         $Product_Stock = new Product();
         $Product_Stock->setCorrectStock($id_combination, $stock);
+        try {
+            $Script = new ScriptSuppliers();
+            $Script->RegenerateCombinations();
+            $Script->ResetDefaultCombinations();
+        } catch (Exception $e) {
+            file_put_contents('error_script_default_combinations', $e->getMessage() . PHP_EOL, FILE_APPEND);
+        }
         return array($id_combination, $inserted);
     }
 
