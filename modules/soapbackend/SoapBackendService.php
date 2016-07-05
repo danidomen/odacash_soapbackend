@@ -1168,6 +1168,9 @@ where
                 'id_shop' => 1,
                 'cover' => $cover
             );
+            if (PS_VERSION > 1.5) {
+                $data2['id_product']=$id_product;
+            }
             self::insertRecord('`' . _DB_PREFIX_ . 'image_shop`', $data2);
             $newfilename = realpath(dirname(__FILE__) . '/../../' . 'img/p/') . '/' . "{$id_product}-{$imageid}.jpg";
             self::copyImage($path, $newfilename);
