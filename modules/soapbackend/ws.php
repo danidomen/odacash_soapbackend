@@ -1,11 +1,13 @@
 <?php
+ob_start();
 include 'PearWI/wiIncludeBase.php';
 //include 'PearWI/wiIncludeMDB2.php';
 include 'PearWI/wiIncludeSoapServer.php';
 include('../../config/config.inc.php');
 include('../../images.inc.php');
 include('soapbackend.php');
-
+ob_end_clean(); 
+ob_start();
 function raiseFault($error, $description) {
     header('Content-type: text/xml');
     echo "
