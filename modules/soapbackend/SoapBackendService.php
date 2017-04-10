@@ -1168,7 +1168,7 @@ where
                 'id_shop' => 1,
                 'cover' => $cover
             );
-            if (PS_VERSION > 1.5) {
+            if (_PS_VERSION_ > 1.5) {
                 $data2['id_product']=$id_product;
             }
             self::insertRecord('`' . _DB_PREFIX_ . 'image_shop`', $data2);

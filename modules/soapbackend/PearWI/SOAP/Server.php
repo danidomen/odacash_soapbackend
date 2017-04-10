@@ -270,6 +270,8 @@ class SOAP_Server extends SOAP_Base
      */
     function _sendResponse($response = '')
     {
+        ob_end_clean();  
+        ob_start();
         /* Make distinction between the different SAPIs, running PHP as CGI or
          * as a module. */
         if (stristr(php_sapi_name(), 'cgi') === 0) {
