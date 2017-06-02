@@ -1451,7 +1451,13 @@ where
 
         list($id_category, $inserted_category) = $this->UpdateOrCreateOdaCategory($categoryCode, $parentId, $parentLevel);
         $linkcat = self::create_slug($categoryName);
+        $defaultLanguage = (int)Configuration::get('PS_LANG_DEFAULT');
         foreach ($ids_lang as $id_lang) {
+            if($id_lang != $defaultLanguage){
+                if(!$inserted_category){
+                    continue;
+                }
+            }
             $this->UpdateCategoryTexts($id_lang, $id_category, $categoryName, $linkcat);
         }
         if ($inserted_category) {
